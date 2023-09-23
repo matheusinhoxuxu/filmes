@@ -15,8 +15,8 @@ const Atores = ({ navigation, route }) => {
             setAtor(resultado.data)
         })
 
-        apiFilmes.get("person/?{person_id}").then((resultado) => {
-            setFilmes(resultado.data.results);
+        apiFilmes.get(`/person/${id}/movie_credits`).then((resultado) => {
+            setFilmes(resultado.data.cast);
         });
     }, [])
 
@@ -44,9 +44,9 @@ const Atores = ({ navigation, route }) => {
                 <Card style={{ marginTop: 50, margin: 10 }} mode='outlined' key={item.id}>
                     <Card.Title
                         title={item.character}
-                        subtitle={item.name}
+                        subtitle={item.title}
                         left={(props) => <Avatar.Image size={50}
-                            source={{ uri: 'https://image.tmdb.org/t/p/w500/' + item.profile_path }} />}
+                            source={{ uri: 'https://image.tmdb.org/t/p/w500/' + item.poster_path }} />}
                         right={(props) => <IconButton {...props} icon="dots-vertical"
                             onPress={() =>
                             navigation.push("ator", { id: item.id })
