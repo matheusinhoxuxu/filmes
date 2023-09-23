@@ -38,6 +38,9 @@ const Atores = ({ navigation, route }) => {
                 </Card.Content>
             </Card>
 
+            <Card.Content style={{alignItems:'center'}}>
+                <Text style={{marginTop:10, margin:10}} variant='titleLarge'>Filmes</Text>
+            </Card.Content>
 
             {filmes.map((item) => (
 
@@ -49,7 +52,7 @@ const Atores = ({ navigation, route }) => {
                             source={{ uri: 'https://image.tmdb.org/t/p/w500/' + item.poster_path }} />}
                         right={(props) => <IconButton {...props} icon="dots-vertical"
                             onPress={() =>
-                            navigation.push("ator", { id: item.id })
+                            navigation.push("filmes-detalhes", { id: item.id })
                             } />}
                     />
                 </Card>
