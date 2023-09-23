@@ -8,7 +8,7 @@ const FilmesPopulares = ({navigation}) => {
   const [filmes, setFilmes] = useState([])
 
   useEffect(()=>{
-    apiFilmes.get('/movie/popular?language=pt-br').then(resultado => {
+    apiFilmes.get('/movie/popular').then(resultado => {
       setFilmes(resultado.data.results)
     })
   },[])

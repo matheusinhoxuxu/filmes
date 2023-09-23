@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Text } from 'react-native-paper'
+import { Avatar, Card, IconButton, Text } from 'react-native-paper'
 import apiFilmes from '../../services/apiFilmes'
-import { Image, ScrollView, StyleSheet } from 'react-native'
+
+
 
 const FilmesDetalhes = ({ navigation, route }) => {
 
@@ -25,36 +26,43 @@ const FilmesDetalhes = ({ navigation, route }) => {
 
   return (
     <>
-    <ScrollView>
 
-      <Card>
-        <Card.Cover source={{ uri: 'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path }} />
-        <Card.Content>
-          <Text variant="titleLarge">{filme.title}</Text>
-          <Text variant="bodyMedium">{filme.overview}</Text>
+      <Card style={{ marginTop: 50, margin: 10 }}>
+
+        <Card.Content style={{ alignItems: 'center' }} >
+          <Card.Cover style={{ width: 200, height: 300, borderRadius: 10 }}
+            source={{ uri: 'https://image.tmdb.org/t/p/w500/' + filme.poster_path }} />
+        </Card.Content>
+
+        <Card.Content style={{ marginTop: 10 }} >
+          <Text style={{ marginTop: 10, margin: 10 }} variant='titleLarge' >Titulo: {filme.title}</Text>
+          <Text>Descrição: {filme.overview}</Text>
         </Card.Content>
       </Card>
-      <Card mode='outlined' >
 
-        <Text variant="titleLarge">Orçamento:{filme.budget}</Text>
-        <Text variant="bodyMedium">Voto:{filme.vote_average}</Text>
-        <Text variant="bodyMedium">Duração:{filme.runtime}min</Text>
-        <Text variant="bodyMedium">Lançamento:{filme.release_date}</Text>
-
+      <Card mode='outlined' style={{marginBottom:15}}>
+        <Card.Content>
+          <Text variant='bodyMedium'>Orçamento:{filme.budget}</Text>
+          <Text variant='bodyMedium'>Duração: {filme.vote_average}</Text>
+          <Text variant='bodyMedium'>Lançamento:{filme.runtime}</Text>
+        </Card.Content>
       </Card>
-
       {atores.map(item => (
-        <Card key={item.id} style={styles.container}>
-          
-          <Image source={{uri:item.profile_path}} />
+        <Card style={{ marginTop: 50, margin: 10 }} mode='outlined' key={item.id}>
           <Card.Title
             title={item.character}
             subtitle={item.name}
-            />
+            left={(props) => <Avatar.Image size={50}
+              source={{ uri: 'https://image.tmdb.org/t/p/w500/' + item.profile_path }} />}
+            right={(props) => <IconButton {...props} icon="dots-vertical"
+              onPress={() =>
+                navigation.push("atores-detalhes", { id: item.id })
+              } />}
+          />
         </Card>
       ))}
 
-      </ScrollView>
+
 
 
     </>
@@ -63,11 +71,3 @@ const FilmesDetalhes = ({ navigation, route }) => {
 
 export default FilmesDetalhes
 
-styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 15,
-    padding: 10,
-    marginBottom: 10
-  },
-  
-})
