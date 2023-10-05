@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Avatar, Card, IconButton, Text } from 'react-native-paper'
 import apiFilmes from '../../services/apiFilmes'
+import { ScrollView } from 'react-native'
 
 
 
@@ -26,7 +27,7 @@ const FilmesDetalhes = ({ navigation, route }) => {
 
   return (
     <>
-
+      <ScrollView>
       <Card style={{ marginTop: 50, margin: 10 }}>
 
         <Card.Content style={{ alignItems: 'center' }} >
@@ -40,7 +41,7 @@ const FilmesDetalhes = ({ navigation, route }) => {
         </Card.Content>
       </Card>
 
-      <Card mode='outlined' style={{marginBottom:15}}>
+      <Card mode='outlined' style={{ marginBottom: 15 }}>
         <Card.Content>
           <Text variant='bodyMedium'>Orçamento:{filme.budget}</Text>
           <Text variant='bodyMedium'>Duração: {filme.vote_average}</Text>
@@ -61,10 +62,7 @@ const FilmesDetalhes = ({ navigation, route }) => {
           />
         </Card>
       ))}
-
-
-
-
+      </ScrollView>
     </>
   )
 }

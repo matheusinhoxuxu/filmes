@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Card, Text } from 'react-native-paper'
 import apiFilmes from '../../services/apiFilmes'
+import { ScrollView } from 'react-native'
 
 
 const FilmesPopulares = ({navigation}) => {
@@ -16,7 +17,7 @@ const FilmesPopulares = ({navigation}) => {
 
   return (
     <>
-      
+      <ScrollView>
       {filmes.map(item => (
         <Card key={item.id} onPress={()=>navigation.push('filmes-detalhes',{id: item.id})}>
           <Card.Cover source={{ uri: 'https://image.tmdb.org/t/p/w500/' + item.backdrop_path }} />
@@ -26,6 +27,7 @@ const FilmesPopulares = ({navigation}) => {
           </Card.Content>
         </Card>
       ))}
+      </ScrollView>
     </>
   )
 }

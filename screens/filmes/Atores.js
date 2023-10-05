@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import apiFilmes from '../../services/apiFilmes'
 import { Avatar, Card, IconButton, Text } from 'react-native-paper'
+import { ScrollView } from 'react-native';
 
 const Atores = ({ navigation, route }) => {
 
@@ -22,10 +23,10 @@ const Atores = ({ navigation, route }) => {
 
     return (
         <>
-
+            <ScrollView>
             <Card style={{ marginTop: 50, margin: 10 }} key={ator.id}>
                 <Card.Content>
-                    <Card.Cover style={{ width: 200, height: 300 }} source={{ uri: 'https://image.tmdb.org/t/p/w500/' + ator.profile_path }} />
+                    <Card.Cover style={{ height: 350 }} source={{ uri: 'https://image.tmdb.org/t/p/w500/' + ator.profile_path }} />
                     <Text style={{ margin: 10 }} variant='titleLarge' >Nome: {ator.name}</Text>
                     <Text style={{ margin: 10 }} >Biografia: {ator.biography}</Text>
                 </Card.Content>
@@ -57,8 +58,7 @@ const Atores = ({ navigation, route }) => {
                     />
                 </Card>
             ))}
-
-
+    </ScrollView>              
         </>
 
     )
